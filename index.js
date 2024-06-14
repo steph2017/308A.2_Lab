@@ -38,6 +38,7 @@ class Character {
     roll(mod = 0) {
         const result = Math.floor(Math.random() * 20) + 1 + mod;
         console.log(`${this.name} rolled a ${result}.`);
+        return result;
     }
     printInventory() {
         this.inventory.forEach((item) => {
@@ -67,6 +68,30 @@ class Adventurer extends Character {
         console.log(`${this.name} is scouting ahead...`);
         super.roll();
     }
+    duel(oppAdventurer) {
+        let round = 1;
+        let myRoll = 0;
+        let theirRoll = 0;
+        while (super.health > 50 && oppAdventurer.health > 50) {
+            console.log("Round " + round + ": ");
+            myRoll = super.roll();
+            theirRoll = oppAdventurer.roll();
+            if (myRoll > theirRoll) {
+                oppAdventurer.health--;
+                console.log(`${this.name} won! ${this.name}'s health is ${super.health} & ${oppAdventurer.name}'s health is ${oppAdventurer.health}.`);
+            }
+            else if (theirRoll > myRoll) {
+                super.health--;
+                console.log(`${oppAdventurer.name} won! ${this.name}'s health is ${super.health} & ${oppAdventurer.name}'s health is ${oppAdventurer.health}.`);
+            }
+            else {
+                console.log(`Tie Roll! ${this.name}'s health is ${super.health} & ${oppAdventurer.name}'s health is ${oppAdventurer.health}.`);
+            }
+            round++;
+        }
+        super.health > 50 ? console.log(`${this.name} won the duel!!!!`) : console.log(`${oppAdventurer.name} won the duel!!!!`);
+        return;
+    }
     //Static property
     static ROLES = ["Mage", "Healer", "Warrior", "unassigned"];
 }
@@ -86,4 +111,7 @@ adventurer1.companion = new Companion("Leo", "Cat");
 adventurer1.companion.companion = new Companion("Frank", "Flea");
 adventurer1.companion.companion.inventory.push(["small_hat", "sunglasses"]);
 
-// Part 4 (see above)
+// Part 4 static classes (see above)
+// Part 5 nothing needed
+// Part 6 Duel Method (see above)
+
