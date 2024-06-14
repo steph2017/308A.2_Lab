@@ -69,3 +69,11 @@ class Companion extends Character {
         this.type = type;
     }
 }
+
+//redeclare robin thru classes
+
+const adventurer1 = new Adventurer("Robin", "Mage");
+adventurer1.inventory.push(["sword", "potion", "artifact"]);
+adventurer1.companion = new Companion("Leo", "Cat");
+adventurer1.companion.companion = new Companion("Frank", "Flea");
+adventurer1.companion.companion.inventory.push(["small_hat", "sunglasses"]);
