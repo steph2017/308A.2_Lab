@@ -72,24 +72,24 @@ class Adventurer extends Character {
         let round = 1;
         let myRoll = 0;
         let theirRoll = 0;
-        while (super.health > 50 && oppAdventurer.health > 50) {
+        while (this.health > 50 && oppAdventurer.health > 50) {
             console.log("Round " + round + ": ");
-            myRoll = super.roll();
+            myRoll = this.roll();
             theirRoll = oppAdventurer.roll();
             if (myRoll > theirRoll) {
                 oppAdventurer.health--;
-                console.log(`${this.name} won! ${this.name}'s health is ${super.health} & ${oppAdventurer.name}'s health is ${oppAdventurer.health}.`);
+                console.log(`${this.name} won! ${this.name}'s health is ${this.health} & ${oppAdventurer.name}'s health is ${oppAdventurer.health}.`);
             }
             else if (theirRoll > myRoll) {
-                super.health--;
-                console.log(`${oppAdventurer.name} won! ${this.name}'s health is ${super.health} & ${oppAdventurer.name}'s health is ${oppAdventurer.health}.`);
+                this.health--;
+                console.log(`${oppAdventurer.name} won! ${this.name}'s health is ${this.health} & ${oppAdventurer.name}'s health is ${oppAdventurer.health}.`);
             }
             else {
-                console.log(`Tie Roll! ${this.name}'s health is ${super.health} & ${oppAdventurer.name}'s health is ${oppAdventurer.health}.`);
+                console.log(`Tie Roll! ${this.name}'s health is ${this.health} & ${oppAdventurer.name}'s health is ${oppAdventurer.health}.`);
             }
             round++;
         }
-        super.health > 50 ? console.log(`${this.name} won the duel!!!!`) : console.log(`${oppAdventurer.name} won the duel!!!!`);
+        this.health > 50 ? console.log(`${this.name} won the duel!!!!`) : console.log(`${oppAdventurer.name} won the duel!!!!`);
         return;
     }
     //Static property
@@ -115,3 +115,6 @@ adventurer1.companion.companion.inventory.push(["small_hat", "sunglasses"]);
 // Part 5 nothing needed
 // Part 6 Duel Method (see above)
 
+const adventurer2 = new Adventurer("Harold", "Warrior");
+
+adventurer1.duel(adventurer2);
