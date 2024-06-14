@@ -1,23 +1,23 @@
 // Part 1
 
-const adventurer = {
-    name: "Robin",
-    health: 10,
-    inventory: ["sword", "potion", "artifact"],
-    companion: {
-        name: "Leo",
-        type: "Cat",
-        companion: {
-            name: "Frank",
-            type: "Flea",
-            inventory: ["small_hat", "sunglasses"]
-        }
-    },
-    roll(mod = 0) {
-        const result = Math.floor(Math.random() * 20) + 1 + mod;
-        console.log(`${this.name} rolled a ${result}.`)
-    }
-}
+// const adventurer = {
+//     name: "Robin",
+//     health: 10,
+//     inventory: ["sword", "potion", "artifact"],
+//     companion: {
+//         name: "Leo",
+//         type: "Cat",
+//         companion: {
+//             name: "Frank",
+//             type: "Flea",
+//             inventory: ["small_hat", "sunglasses"]
+//         }
+//     },
+//     roll(mod = 0) {
+//         const result = Math.floor(Math.random() * 20) + 1 + mod;
+//         console.log(`${this.name} rolled a ${result}.`)
+//     }
+// }
 
 // //logs inventory
 // adventurer.inventory.forEach((item) => {
@@ -37,6 +37,35 @@ class Character {
     }
     roll(mod = 0) {
         const result = Math.floor(Math.random() * 20) + 1 + mod;
-        console.log(`${this.name} rolled a ${result}.`)
+        console.log(`${this.name} rolled a ${result}.`);
+    }
+    printInventory() {
+        this.inventory.forEach((item) => {
+            console.log(item);
+        });
+    }
+}
+
+//Part 3
+
+class Adventurer extends Character {
+    constructor(name, role) {
+        super(name);
+        // Adventurers have specialized roles.
+        this.role = role;
+        // Every adventurer starts with a bed and 50 gold coins.
+        this.inventory.push("bedroll", "50 gold coins");
+    }
+    // Adventurers have the ability to scout ahead of them.
+    scout() {
+        console.log(`${this.name} is scouting ahead...`);
+        super.roll();
+    }
+}
+
+class Companion extends Character {
+    constructor(name, type) {
+        super(name);
+        this.type = type;
     }
 }
