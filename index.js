@@ -44,14 +44,20 @@ class Character {
             console.log(item);
         });
     }
+    //static property
+    static MAX_HEALTH = 100;
 }
 
 //Part 3
 
 class Adventurer extends Character {
-    constructor(name, role) {
+    constructor(name, role = "unassigned") {
         super(name);
         // Adventurers have specialized roles.
+        if (role != "Mage" && role != "Healer" && role != "Warrior" && role != "unassigned") {
+            this.role = "unassigned"
+            console.log("You provided an invalid role. Assigning the \"unassigned\"role as a default.");
+        }
         this.role = role;
         // Every adventurer starts with a bed and 50 gold coins.
         this.inventory.push("bedroll", "50 gold coins");
@@ -61,6 +67,8 @@ class Adventurer extends Character {
         console.log(`${this.name} is scouting ahead...`);
         super.roll();
     }
+    //Static property
+    static ROLES = ["Mage", "Healer", "Warrior", "unassigned"];
 }
 
 class Companion extends Character {
@@ -77,3 +85,5 @@ adventurer1.inventory.push(["sword", "potion", "artifact"]);
 adventurer1.companion = new Companion("Leo", "Cat");
 adventurer1.companion.companion = new Companion("Frank", "Flea");
 adventurer1.companion.companion.inventory.push(["small_hat", "sunglasses"]);
+
+// Part 4 (see above)
